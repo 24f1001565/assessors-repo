@@ -21,9 +21,8 @@ jobs:
 
       - name: prime-cache-5f1b75e
         run: |
-          if [ -n "${{ steps.cache-step.outputs.cache-hit }}" ]; then
+          if [ "${{ steps.cache-step.outputs.cache-hit }}" == 'true' ]; then
             echo "Cache hit!"
           else
             echo "Cache miss!"
           fi
-
