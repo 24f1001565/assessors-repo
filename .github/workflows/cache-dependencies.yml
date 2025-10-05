@@ -1,0 +1,28 @@
+name: Cache Dependencies
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Cache dependencies
+      id: prime-cache-5f1b75e
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pip
+          node_modules
+        key: cache-5f1b75e
+
+    - name: Show cache result
+      run: echo "Cache hit/miss: ${{ steps.prime-cache-5f1b75e.outputs.cache-hit }}"
+
